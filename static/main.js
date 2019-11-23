@@ -24,12 +24,5 @@ $(document).ready(function(){
                 $("#Solution").html("<h2> Resistance : " + data["resistance"] +" \u2126" + " </h2><br>" + "<h2> Tolerance: " + data["tolerance"] + "</h2><br>");
             });
         }
-
-        // Definitely create 2 endpoints:
-        // 1 for 4 band(4 band resistor) AND 1 for 5 band (5 band resistor)
-        //---------------------------------------------------------------------------
-        // Todo: Recreate the html and re-due the main.js file to include 2 endpoints
-        // use if statements
-        //---------------------------------------------------------------------------
     });
 });
