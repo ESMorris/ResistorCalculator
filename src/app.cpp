@@ -28,7 +28,7 @@ int main(int argc, char** argv){
     tolerance["Blue"] = " +/- .25% ", tolerance["Violet"] = " +/- .1% ", tolerance["Grey"] = " +/- .05% ";
     tolerance["Gold"] = " +/- 5% ", tolerance["Silver"] = " +/- 10% ";
 
-    server.route("/5band_resistance", [&](const request& req, response& res){
+    server.route("/5band_resistor", [&](const request& req, response& res){
 
         if (req.has_params({"b1", "b2", "b3", "b4", "b5"})){
             // Create a ucm json that will hold the result and pass it to the front end
@@ -51,6 +51,42 @@ int main(int argc, char** argv){
 
             // calculate the resistance here
             resistance = ((band.at(button_One)*100) + (band.at(button_Two)*10) + (band.at(button_Three)))* multiplier.at(button_Four);
+            std::cout << resistance << std::endl;
+            str_Tolerance = tolerance.at(button_Five);
+            std::cout << str_Tolerance << std::endl;
+
+
+            result["resistance"] = resistance;
+            result["tolerance"] = str_Tolerance;
+            res.sendJSON(result);
+        }
+
+        else{
+            res.sendError400();
+        }
+    });
+
+    server.route("/4band_resistor", [&](const request& req, response& res){
+
+        if (req.has_params({"b1", "b2", "b4", "b5"})){
+            // Create a ucm json that will hold the result and pass it to the front end
+            ucm::json result;
+            // variables to hold the calculated resistance and tolerance
+            double resistance;
+            std::string str_Tolerance;
+            // Get the inputs for each of the buttons
+            std::string button_One = req.url_params.get("b1");
+            std::string button_Two = req.url_params.get("b2");
+            std::string button_Four = req.url_params.get("b4");
+            std::string button_Five = req.url_params.get("b5");
+
+            std::cout << band.at(button_One) << std::endl;
+            std::cout << band.at(button_Two) << std::endl;
+            std::cout << multiplier.at(button_Four) << std::endl;
+            std::cout << tolerance.at(button_Five) << std::endl;
+
+            // calculate the resistance here
+            resistance = ((band.at(button_One)*10) + (band.at(button_Two)))* multiplier.at(button_Four);
             std::cout << resistance << std::endl;
             str_Tolerance = tolerance.at(button_Five);
             std::cout << str_Tolerance << std::endl;
