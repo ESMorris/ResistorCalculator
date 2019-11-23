@@ -28,7 +28,7 @@ int main(int argc, char** argv){
     tolerance["Blue"] = " +/- .25% ", tolerance["Violet"] = " +/- .1% ", tolerance["Grey"] = " +/- .05% ";
     tolerance["Gold"] = " +/- 5% ", tolerance["Silver"] = " +/- 10% ";
 
-    server.route("/resistance", [&](const request& req, response& res){
+    server.route("/5band_resistance", [&](const request& req, response& res){
 
         if (req.has_params({"b1", "b2", "b3", "b4", "b5"})){
             // Create a ucm json that will hold the result and pass it to the front end
