@@ -10,10 +10,15 @@ $(document).ready(function(){
         if(b3 == "4Band"){
             // if the user has selected a 4 band resistor call the 4 band resistance endpoint
             console.log("It is a 4 band resistor");
+            $.get("/4band_resistor", {"b1": b1, "b2": b2, "b3": b3, "b4": b4, "b5": b5}, function(response) {
+                var data = JSON.parse(response);
+                console.log(data);
+                $("#Solution").html("<h2> Resistance : " + data["resistance"] +" \u2126" + " </h2><br>" + "<h2> Tolerance: " + data["tolerance"] + "</h2><br>");
+            });
         }
         else{
             //  if the user has selected a 5 band resistor call the 5 band resistance endpoint
-            $.get("/5band_resistance", {"b1": b1, "b2": b2, "b3": b3, "b4": b4, "b5": b5}, function(response) {
+            $.get("/5band_resistor", {"b1": b1, "b2": b2, "b3": b3, "b4": b4, "b5": b5}, function(response) {
                 var data = JSON.parse(response);
                 console.log(data);
                 $("#Solution").html("<h2> Resistance : " + data["resistance"] +" \u2126" + " </h2><br>" + "<h2> Tolerance: " + data["tolerance"] + "</h2><br>");
