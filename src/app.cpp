@@ -43,21 +43,14 @@ int main(int argc, char** argv){
             std::string button_Four = req.url_params.get("b4");
             std::string button_Five = req.url_params.get("b5");
 
-            std::cout << band.at(button_One) << std::endl;
-            std::cout << band.at(button_Two) << std::endl;
-            std::cout << band.at(button_Three) << std::endl;
-            std::cout << multiplier.at(button_Four) << std::endl;
-            std::cout << tolerance.at(button_Five) << std::endl;
-
             // calculate the resistance here
             resistance = ((band.at(button_One)*100) + (band.at(button_Two)*10) + (band.at(button_Three)))* multiplier.at(button_Four);
-            std::cout << resistance << std::endl;
             str_Tolerance = tolerance.at(button_Five);
-            std::cout << str_Tolerance << std::endl;
 
-
+            // set the result to the correct resistance/tolerance
             result["resistance"] = resistance;
             result["tolerance"] = str_Tolerance;
+            // send back the response
             res.sendJSON(result);
         }
 
@@ -80,20 +73,15 @@ int main(int argc, char** argv){
             std::string button_Four = req.url_params.get("b4");
             std::string button_Five = req.url_params.get("b5");
 
-            std::cout << band.at(button_One) << std::endl;
-            std::cout << band.at(button_Two) << std::endl;
-            std::cout << multiplier.at(button_Four) << std::endl;
-            std::cout << tolerance.at(button_Five) << std::endl;
-
             // calculate the resistance here
             resistance = ((band.at(button_One)*10) + (band.at(button_Two)))* multiplier.at(button_Four);
-            std::cout << resistance << std::endl;
+            // calculate the Tolerance
             str_Tolerance = tolerance.at(button_Five);
-            std::cout << str_Tolerance << std::endl;
 
-
+            // set the result to the correct resistance/tolerance
             result["resistance"] = resistance;
             result["tolerance"] = str_Tolerance;
+            // send the response back
             res.sendJSON(result);
         }
 
@@ -104,15 +92,3 @@ int main(int argc, char** argv){
 
     server.run();
 }
-
-
-
-// band["black"] = 1
-// band["brown"] = 2
-// etc...
-// multiplier["black"] = 1
-//multiplier["brown"] = 10
-// etc...
-//tolerance["black"] = "+/- 1%"
-// std::strings : b1, b2, b3, b4, b5
-// band.at(b1) => 1
