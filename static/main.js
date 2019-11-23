@@ -14,7 +14,7 @@ $(document).ready(function(){
         $.get("/resistance", {"b1": b1, "b2": b2, "b3": b3, "b4": b4, "b5": b5}, function(response) {
             var data = JSON.parse(response);
             console.log(data);
-            $("#Solution").html("<h2> Resistance : " + data["resistance"] + " </h2><br>" + "<h2> Tolerance: " + data["tolerance"] + "</h2><br>");
+            $("#Solution").html("<h2> Resistance : " + data["resistance"] +" \u2126" + " </h2><br>" + "<h2> Tolerance: " + data["tolerance"] + "</h2><br>");
 
         });
 
