@@ -74,7 +74,7 @@ int main(int argc, char** argv){
             std::string button_Five = req.url_params.get("b5");
 
             // calculate the resistance here
-            resistance = ((band.at(button_One)*10) + (band.at(button_Two)))* multiplier.at(button_Four);
+            resistance = (((band.at(button_One)*10) + (band.at(button_Two)))* multiplier.at(button_Four));
             // calculate the Tolerance
             str_Tolerance = tolerance.at(button_Five);
 
